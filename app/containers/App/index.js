@@ -16,7 +16,9 @@ import HomePage from 'containers/HomePage/Loadable';
 const AppWrapper = styled.div`
   margin: 0 auto;
   display: flex;
-  min-height: 100%;
+  justify-content: center;
+  height: 100vh;
+  background: #b7ada0;
 `;
 
 export default function App() {
