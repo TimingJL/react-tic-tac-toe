@@ -18,7 +18,7 @@ const AppWrapper = styled.div`
   display: flex;
   justify-content: center;
   height: 100vh;
-  background: #b7ada0;
+  background: #f8f8f8;
 `;
 
 export default function App() {
@@ -26,7 +26,7 @@ export default function App() {
     <AppWrapper>
       <Helmet
         titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        defaultTitle="Tic Tac Toe"
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
