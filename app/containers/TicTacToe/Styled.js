@@ -1,7 +1,17 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-const BLOCK_SIZE = 600;
+const BLOCK_SIZE = 500;
 const CHESS_SIZE = 100;
+
+const winnerBackground = keyframes`
+  from {
+    background: #ff4f6e;
+  }
+
+  to {
+    background: #ff99ab;
+  }
+`;
 
 export const StyledTicTacToe = styled.div`
   width: ${BLOCK_SIZE}px;
@@ -28,6 +38,10 @@ export const StyledTicTacToe = styled.div`
     &:hover {
       background: #ff4f6e;
     }
+  }
+
+  .tic-tac-toe__item-win {
+    animation: ${winnerBackground} 0.5s linear infinite alternate;
   }
 
   .tic-tac-toe__restart-btn {
@@ -87,7 +101,7 @@ export const StyledInfo = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-  height: 120px;
+  height: 150px;
   background: #ffffff5e;
   margin: 20px 0px;
   text-align: center;

@@ -10,6 +10,13 @@ import { StyledTicTacToe } from './Styled';
 import { makeSelectBlocks, makeSelectCurrentRole } from './selectors';
 import { setBlockValue, setInit } from './actions';
 
+const blockStyle = (id, isWin) => {
+  if (isWin.includes(id)) {
+    return 'tic-tac-toe__item tic-tac-toe__item-win';
+  }
+  return 'tic-tac-toe__item';
+};
+
 class TicTacToe extends React.Component {
   static propTypes = {
     currentRole: PropTypes.number,
@@ -53,7 +60,7 @@ class TicTacToe extends React.Component {
           {blocks.map(block => (
             <button
               key={block.get('id')}
-              className="tic-tac-toe__item"
+              className={blockStyle(block.get('id'), isWin.winCaseArr)}
               data-id={block.get('id')}
               onClick={isWin.isGameFinished ? () => {} : this.handleOnClick}
             >

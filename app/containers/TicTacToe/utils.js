@@ -15,7 +15,7 @@ const winCases = [
 
 export const getWinner = blocks => {
   let winner;
-  const winCaseArr = [];
+  let winCaseArr = [];
   let isGameFinished = false;
   const findEmptyBlock = blocks.find(block => block.get('owner') === undefined);
   winCases.map(winCase => {
@@ -24,7 +24,7 @@ export const getWinner = blocks => {
     const case3 = blocks.getIn([winCase[2], 'owner']);
     if (case1 && (case1 === case2 && case2 === case3 && case1 === case3)) {
       winner = case1;
-      winCaseArr.push(winCase);
+      winCaseArr = winCaseArr.concat(winCase);
       isGameFinished = true;
       return true;
     }
