@@ -1,4 +1,4 @@
-import { SET_BLOCK_VALUE } from './constants';
+import { INIT, SET_BLOCK_VALUE } from './constants';
 
 export const setBlockValue = (id, currentRole) => ({
   type: SET_BLOCK_VALUE,
@@ -6,4 +6,8 @@ export const setBlockValue = (id, currentRole) => ({
     id,
     currentRole,
   },
+});
+
+export const setInit = () => ({
+  type: INIT,
 });

@@ -18,7 +18,7 @@ const AppWrapper = styled.div`
   display: flex;
   justify-content: center;
   height: 100vh;
-  background: #f8f8f8;
+  background: #ffd85c;
 `;
 
 export default function App() {
