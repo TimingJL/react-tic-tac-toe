@@ -50,6 +50,7 @@ export const showChess = role => {
   return null;
 };
 
+/* Random Algorithm */
 export const getBlockId = blocks => {
   const enableBlocks = blocks.filter(block => block.get('owner') === undefined);
   const choosedId = enableBlocks
