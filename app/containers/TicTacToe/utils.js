@@ -49,3 +49,11 @@ export const showChess = role => {
   }
   return null;
 };
+
+export const getBlockId = blocks => {
+  const enableBlocks = blocks.filter(block => block.get('owner') === undefined);
+  const choosedId = enableBlocks
+    .get(Math.floor(Math.random() * enableBlocks.size))
+    .get('id');
+  return choosedId;
+};

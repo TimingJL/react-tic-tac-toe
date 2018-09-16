@@ -12,4 +12,19 @@ const makeSelectCurrentRole = () =>
     tictactoeState.get('currentRole'),
   );
 
-export { makeSelectBlocks, makeSelectCurrentRole };
+const makeSelectMode = () =>
+  createSelector(selectTicTacToe, tictactoeState =>
+    tictactoeState.get('isSinglePlayer'),
+  );
+
+const makeSelectIsWin = () =>
+  createSelector(selectTicTacToe, tictactoeState =>
+    tictactoeState.get('isWin'),
+  );
+
+export {
+  makeSelectBlocks,
+  makeSelectCurrentRole,
+  makeSelectMode,
+  makeSelectIsWin,
+};

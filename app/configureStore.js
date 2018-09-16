@@ -6,15 +6,35 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import createReducer from './reducers';
+import initialEpics from './epics';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState = {}, history) {
+  // Create root epic that accepts async injection
+  const epic$ = new BehaviorSubject(combineEpics(...initialEpics));
+  const rootEpic = (action$, store, deps) =>
+    epic$.mergeMap(epic =>
+      epic(action$, store, deps).catch((err, source$) => {
+        setTimeout(() => {
+          throw err;
+        }, 0);
+        return source$;
+      }),
+    );
+  const epicMiddleware = createEpicMiddleware();
+
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
-  const middlewares = [sagaMiddleware, routerMiddleware(history)];
+  const middlewares = [
+    epicMiddleware,
+    sagaMiddleware,
+    routerMiddleware(history),
+  ];
 
   const enhancers = [applyMiddleware(...middlewares)];
 
@@ -37,6 +57,8 @@ export default function configureStore(initialState = {}, history) {
     fromJS(initialState),
     composeEnhancers(...enhancers),
   );
+
+  epicMiddleware.run(rootEpic);
 
   // Extensions
   store.runSaga = sagaMiddleware.run;

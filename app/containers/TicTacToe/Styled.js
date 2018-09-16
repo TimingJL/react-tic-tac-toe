@@ -63,6 +63,18 @@ export const StyledTicTacToe = styled.div`
       color: #ff4f6e;
     }
   }
+
+  .tic-tac-toe__switch-btn-wrapper {
+    font-family: 'Rammetto One', 微軟正黑體;
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 1.5em;
+      margin-left: 10px;
+      color: white;
+      text-shadow: 2px 2px #ff4f6e;
+    }
+  }
 `;
 
 export const Circle = styled.div`
